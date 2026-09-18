@@ -12,23 +12,29 @@ $queryCategoria = "SELECT id, descricao FROM categoria WHERE id != " . $produto[
 $resultadoCategoria = $conexao->query($queryCategoria);
 ?>
 
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Produto</title>
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
-    <form action="crud/editar.php" method="POST">
+
+    <h2>Editar Produto</h2>
+
+    <form action="crud/atualizar.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $produto['id']; ?>">
 
         <label for="nome">Nome do Produto:</label><br>
-        <input type="text" id="nome" name="nome" value="<?php echo $produto['nome']; ?>" required><br><br>
+        <input type="text" id="nome" name="nome" value="<?php echo $produto['nome']; ?>" class="input-padrao"
+            required><br>
 
         <label for="categoria">Categoria:</label><br>
-        <select name="categoria_id" id="categoria">
+        <select name="categoria_id" id="categoria" class="input-padrao">
             <option value="<?php echo $produto['categoria_id']; ?>" selected><?php echo $produto['categoria']; ?>
             </option>
             <?php
@@ -37,26 +43,27 @@ $resultadoCategoria = $conexao->query($queryCategoria);
                 echo "<option value='" . $categoria['id'] . "'>" . $categoria['descricao'] . "</option>";
             }
             ?>
-        </select><br><br>
+        </select><br>
 
         <label for="descricao">Descrição:</label><br>
-        <textarea id="descricao" name="descricao" rows="4"
-            cols="30"><?php echo $produto['descricao']; ?></textarea><br><br>
+        <textarea id="descricao" name="descricao" rows="4" cols="30"
+            class="input-padrao"><?php echo $produto['descricao']; ?></textarea><br>
 
         <label for="preco">Preço (R$):</label><br>
         <input type="number" step="0.01" id="preco" name="preco" value="<?php echo $produto['preco']; ?>"
-            required><br><br>
+            class="input-padrao" required><br>
 
         <label for="quantidade_estoque">Quantidade em Estoque:</label><br>
         <input type="number" id="quantidade" name="quantidade" value="<?php echo $produto['quantidade']; ?>"
-            required><br><br>
+            class="input-padrao" required><br>
 
         <label for="data_validade">Data de Validade:</label><br>
         <input type="date" id="data_validade" name="data_validade" value="<?php echo $produto['data_validade']; ?>"
-            required><br><br>
+            class="input-padrao" required><br><br>
 
-        <button type="submit">Salvar Alterações</button>
+        <button type="submit" class="btn-roxo">Salvar Alterações</button>
     </form>
+
 </body>
 
 </html>
