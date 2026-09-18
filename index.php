@@ -13,6 +13,7 @@ $resultadoCategoria = $conexao->query($queryCategoria);
 <head>
     <meta charset="UTF-8">
     <title>Gestão de Estoque - Mercado</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
@@ -23,37 +24,37 @@ $resultadoCategoria = $conexao->query($queryCategoria);
 
     <form action="components/crud/cadastrar.php" method="POST">
         <label for="nome">Nome do Produto:</label><br>
-        <input type="text" id="nome" name="nome" value="Teste" required><br><br>
+        <input type="text" id="nome" name="nome" value="Teste" class="input-padrao" required><br>
 
         <label for="categoria">Categoria:</label><br>
-        <select name="categoria_id" id="categoria" required>
+        <select name="categoria_id" id="categoria" class="input-padrao" required>
             <option value="">Selecione</option>
             <?php
             while ($categoria = $resultadoCategoria->fetch_assoc()) {
                 echo "<option value='" . $categoria['id'] . "'>" . $categoria['descricao'] . "</option>";
             }
             ?>
-        </select><br><br>
+        </select><br>
 
         <label for="descricao">Descrição:</label><br>
-        <textarea id="descricao" name="descricao">Teste</textarea><br><br>
+        <textarea id="descricao" name="descricao" class="input-padrao">Teste</textarea><br>
 
         <label for="preco">Preço (R$):</label><br>
-        <input type="number" step="0.01" id="preco" name="preco" value="0.00" required><br><br>
+        <input type="number" step="0.01" id="preco" name="preco" value="0.00" class="input-padrao" required><br>
 
         <label for="quantidade">Quantidade em Estoque:</label><br>
-        <input type="number" id="quantidade" name="quantidade" value="0" required><br><br>
+        <input type="number" id="quantidade" name="quantidade" value="0" class="input-padrao" required><br>
 
         <label for="data_validade">Data de Validade:</label><br>
-        <input type="date" id="data_validade" name="data_validade" required><br><br>
+        <input type="date" id="data_validade" name="data_validade" class="input-padrao" required><br><br>
 
-        <button type="submit">Cadastrar Produto</button>
+        <button type="submit" class="btn-roxo">Cadastrar Produto</button>
     </form>
 
     <hr>
 
     <h2>Produtos Cadastrados</h2>
-    <table border="1">
+    <table class="tabela-roxa">
         <thead>
             <tr>
                 <th>ID</th>
@@ -80,8 +81,8 @@ $resultadoCategoria = $conexao->query($queryCategoria);
                 echo "<td>" . $produto['quantidade'] . "</td>";
                 echo "<td>" . $produto['data_validade'] . "</td>";
                 echo "<td>
-                        <a href='components/edicao.php?id=" . $produto['id'] . "'>Editar</a> | 
-                        <a href='components/crud/deletar.php?id=" . $produto['id'] . "'>Excluir</a>
+                        <a href='components/editar.php?id=" . $produto['id'] . "' class='link-acao'>Editar</a> | 
+                        <a href='components/crud/deletar.php?id=" . $produto['id'] . "' class='link-acao'>Excluir</a>
                       </td>";
                 echo "</tr>";
             }
