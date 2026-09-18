@@ -21,13 +21,13 @@ $resultadoCategoria = $conexao->query($queryCategoria);
 
     <h2>Cadastrar Novo Produto</h2>
 
-    <form action="cadastrar.php" method="POST">
+    <form action="components/crud/cadastrar.php" method="POST">
         <label for="nome">Nome do Produto:</label><br>
-        <input type="text" id="nome" name="nome" required><br><br>
+        <input type="text" id="nome" name="nome" value="Teste" required><br><br>
 
         <label for="categoria">Categoria:</label><br>
-        <select name="categoria_id" id="categoria">
-            <option value="">Selecione uma categoria</option>
+        <select name="categoria_id" id="categoria" required>
+            <option value="">Selecione</option>
             <?php
             while ($categoria = $resultadoCategoria->fetch_assoc()) {
                 echo "<option value='" . $categoria['id'] . "'>" . $categoria['descricao'] . "</option>";
@@ -36,18 +36,18 @@ $resultadoCategoria = $conexao->query($queryCategoria);
         </select><br><br>
 
         <label for="descricao">Descrição:</label><br>
-        <textarea id="descricao" name="descricao" rows="4" cols="30"></textarea><br><br>
+        <textarea id="descricao" name="descricao">Teste</textarea><br><br>
 
         <label for="preco">Preço (R$):</label><br>
-        <input type="number" step="0.01" id="preco" name="preco" required><br><br>
+        <input type="number" step="0.01" id="preco" name="preco" value="0.00" required><br><br>
 
-        <label for="quantidade_estoque">Quantidade em Estoque:</label><br>
-        <input type="number" id="quantidade_estoque" name="quantidade_estoque" required><br><br>
+        <label for="quantidade">Quantidade em Estoque:</label><br>
+        <input type="number" id="quantidade" name="quantidade" value="0" required><br><br>
 
         <label for="data_validade">Data de Validade:</label><br>
         <input type="date" id="data_validade" name="data_validade" required><br><br>
 
-        <button type="submit">Salvar Produto</button>
+        <button type="submit">Cadastrar Produto</button>
     </form>
 
     <hr>
@@ -80,8 +80,8 @@ $resultadoCategoria = $conexao->query($queryCategoria);
                 echo "<td>" . $produto['quantidade'] . "</td>";
                 echo "<td>" . $produto['data_validade'] . "</td>";
                 echo "<td>
-                        <a href='components/editar.php?id=" . $produto['id'] . "'>Editar</a> | 
-                        <a href='components/crud/produto-delete.php?id=" . $produto['id'] . "'>Excluir</a>
+                        <a href='components/edicao.php?id=" . $produto['id'] . "'>Editar</a> | 
+                        <a href='components/crud/deletar.php?id=" . $produto['id'] . "'>Excluir</a>
                       </td>";
                 echo "</tr>";
             }
