@@ -7,6 +7,9 @@ $descricao = $_POST["descricao"];
 $preco = $_POST["preco"];
 $quantidade = $_POST["quantidade"];
 $data_validade = strval($_POST["data_validade"]);
+$data_atual = date("Y-m-d");
+
+include("../validacao.php");
 
 $query = "INSERT INTO produto (nome, categoria_id, descricao, preco, quantidade, data_validade) VALUES (?, ?, ?, ?, ?, ?)";
 
